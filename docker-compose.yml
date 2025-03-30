@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  bot:
+    build:
+      context: .
+      args:
+        - HTTP_PROXY=${HTTP_PROXY}
+        - HTTPS_PROXY=${HTTPS_PROXY}
+    volumes:
+      - ./data:/app/data
+    restart: always
+    environment:
+      - BOT_TOKEN=${BOT_TOKEN}
+      - TZ=UTC
+      # Runtime proxy settings if needed
+      - HTTP_PROXY=${HTTP_PROXY}
+      - HTTPS_PROXY=${HTTPS_PROXY}
+      - http_proxy=${HTTP_PROXY}
+      - https_proxy=${HTTPS_PROXY}
+    # Ensure container starts with limited resources
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+        reservations:
+          memory: 128M 

@@ -43,6 +43,7 @@ def login(phone_number):
 
     resp = requests.post(url=url, headers=headers, json=payload)
 
+    print(resp.json())
     if resp.ok:
         return resp.json() 
     
@@ -79,6 +80,7 @@ def otp(phone_number, token):
 
     resp = requests.post(url=url, headers=headers, json=payload)
     
+    print(resp.json())
     if resp.ok:
         return resp.json()
         
